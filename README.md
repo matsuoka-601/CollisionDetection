@@ -6,7 +6,7 @@ The most naive way for collision detection is checking all $\binom{N}{2}=\frac{N
 However, this is quite inefficient because it becomes quadratically slower as n increases. 
 
 You can make this naive algorithm faster by dividing the plane into grids. 
-When doing collision detection, it's sufficient to detection only the pairs inside the same grid (*1). 
+When doing collision detection, it's sufficient to check only the pairs inside the same grid (*1). 
 If the number of grids is $G$ and the objects are well scattered across the plane, one grid contains $N/G$ objects on average. 
 Therefore, the number of pairs that have to be checked is $G\times \binom{N/G}{2}\approx \frac{N^2}{2G}$, which is about $G$ times smaller than the naive algorithm.
 The time complexity is still quadratic with respect to $N$, but it's much better than the naive one if you set $G$ reasonably large.
