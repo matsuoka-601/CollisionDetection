@@ -13,6 +13,18 @@ The time complexity is still quadratic with respect to $N$, but it's much better
 
 (*1 : It is assumed that the object are much smaller than a grid.)
 
+## How to run
+You need [Siv3D](https://siv3d.github.io/en-us/) to run the codes.
+
+After cloning the repo, run the following commands.
+```
+mkdir build && cd build
+cmake ..
+cd ..
+cmake --build build
+```
+
+Then you can get executables `Naive` and `Grid`. 
 ## Benchmark
 The fps of many modern video games is 60 fps, which means collision detection should be in less than 1000/60=**16.6ms** (*2). The following graph shows the time taken for collision detection while varying the number of objects.
 
