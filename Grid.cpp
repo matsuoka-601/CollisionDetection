@@ -41,7 +41,7 @@ void Main()
 {
 	Scene::SetBackground(Palette::White);
 
-    const double speed = 180.0; // 毎秒 180px 移動
+    	const double speed = 180.0; // 毎秒 180px 移動
 	const int r = 3;
 
 
@@ -106,26 +106,26 @@ void Main()
 			auto intersectGridSet = IntersectGridSet(c); // この球と共有点を持つグリッド
 
 			// 懸念 : 相手が複数のグリッドに属している場合，何回も当たり判定が起こるんじゃないか？
-            for (auto [gridRow, gridCol]: intersectGridSet) {
+            		for (auto [gridRow, gridCol]: intersectGridSet) {
 				for (auto &idx: grid[gridRow][gridCol]) {
-                    auto &c_ = circles[idx];
-                    if (i < idx && c.CheckCollision(c_)) { 
-                        // めり込まないように反発を入れる
-                        double overlap = (c.r + c_.r) - (c_.pos - c.pos).length();
-                        double angle = atan2(c_.pos.y - c.pos.y, c_.pos.x - c.pos.x);
-                        c.pos  -= overlap * Vec2{ cos(angle), sin(angle) };
-                        c_.pos += overlap * Vec2{ cos(angle), sin(angle) };
-
-                        Vec2 normal = (c_.pos - c.pos).normalized();
-                        Vec2 relativeVelocity = c.v - c_.v;
-                        double velocityAlongNormal = relativeVelocity.dot(normal);
-                        Vec2 impulse = velocityAlongNormal * normal;
-                        c.v  -= impulse;
-                        c_.v += impulse;
-                    }
-                }
+				    auto &c_ = circles[idx];
+				    if (i < idx && c.CheckCollision(c_)) { 
+					// めり込まないように反発を入れる
+					double overlap = (c.r + c_.r) - (c_.pos - c.pos).length();
+					double angle = atan2(c_.pos.y - c.pos.y, c_.pos.x - c.pos.x);
+					c.pos  -= overlap * Vec2{ cos(angle), sin(angle) };
+					c_.pos += overlap * Vec2{ cos(angle), sin(angle) };
+		
+					Vec2 normal = (c_.pos - c.pos).normalized();
+					Vec2 relativeVelocity = c.v - c_.v;
+					double velocityAlongNormal = relativeVelocity.dot(normal);
+					Vec2 impulse = velocityAlongNormal * normal;
+					c.v  -= impulse;
+					c_.v += impulse;
+			    		}	
+				}
 			}
-        }
+        	}
 
 		for (int gridRow = 0; gridRow < GridRowCount; gridRow++)
 			for (int gridCol = 0; gridCol < GridColCount; gridCol++)
@@ -150,5 +150,5 @@ void Main()
 			energy += c.v.lengthSq();
 		}
 		std::cerr << energy << "\n"; // エネルギー保存則が成り立つので，この値は一定
-    }
+    	}
 }
